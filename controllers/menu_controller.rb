@@ -53,7 +53,7 @@ require_relative '../models/address_book'
 
  def view_all_entries
     #iterate through all entries in AddressBook
-    address_book.entries do |entry|
+    @address_book.entries do |entry|
       system "clear"
       puts entry.to_s
       #call entry_submenu to display a submenu for each entry
@@ -77,7 +77,7 @@ require_relative '../models/address_book'
    email = gets.chomp
 
    #add a new entry to address_book using add_entry so added in proper order
-   address_book.add_entry(name, phone, email)
+   @address_book.add_entry(name, phone, email)
 
    system "clear"
    puts "New entry created"
