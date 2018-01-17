@@ -4,7 +4,6 @@ require_relative '../models/address_book'
 #entries array will store entries so entries can be
 #added, removed, and counted
 RSpec.describe AddressBook do
-
 let(:book) { AddressBook.new }
 
 
@@ -67,11 +66,12 @@ let(:book) { AddressBook.new }
        #final expect to validate correct entry is removed
        expect(book.entries.first.name).to eq("Sally Smith")
      end
+   end
 
 # Test that AddressBook's .import_from_csv() method is working as expected
    describe "#import_from_csv" do
      it "imports the correct number of entries" do
-       # access the firsty entry in the array of entries that our address_book stores
+       # access the first entry in the array of entries that our address_book stores
        book.import_from_csv("entries.csv")
        book_size = book.entries.size
 
@@ -115,5 +115,41 @@ let(:book) { AddressBook.new }
        check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
      end
    end
-end
+
+    describe "#import_from_csv2" do
+       it "imports the correct number of entries" do
+         # access the first entry in the array of entries that our address_book stores
+         book.import_from_csv2("entries_2.csv")
+         book_size = book.entries.size
+
+         expect(book_size).to eq 3
+    end
+
+     it "imports the 1st entry" do
+       book.import_from_csv2("entries_2.csv")
+       # Check the first entry
+       entry_one = book.entries[0]
+       #helper method that consolidates code
+       #allows us to pass in particular name, number, email
+       check_entry(entry_one, "Kat", "555-535-4224" , "kat@blocmail.com")
+     end
+
+     it "imports the 2nd entry" do
+       book.import_from_csv2("entries_2.csv")
+       # Check the first entry
+       entry_two = book.entries[1]
+       #helper method that consolidates code
+       #allows us to pass in particular name, number, email
+       check_entry(entry_two, "Laura", "555-525-2222", "laura@blocmail.com")
+     end
+
+     it "imports the 3rd entry" do
+       book.import_from_csv2("entries_2.csv")
+       # Check the first entry
+       entry_three = book.entries[2]
+       #helper method that consolidates code
+       #allows us to pass in particular name, number, email
+       check_entry(entry_three, "Chris", "522-555-3669", "chris@blocmail.com")
+     end
+   end
 end
