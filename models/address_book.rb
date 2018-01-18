@@ -60,4 +60,37 @@ class AddressBook
        add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
      end
   end
+
+	def binary_search(name)
+		 #save the index of the leftmost item in the array in lower
+		 #save rightmost item in array in upper
+		 lower = 0
+	   upper = entries.length - 1
+
+	   #loop while our lower index is less than or equal to upper
+	   while lower <= upper
+	     #find the middle index by taking sum of lower and upper and divide by 2
+			 #ruby truncates decimal numbers
+			 #retrieve name of entry at middle index and store as mid_name
+	     mid = (lower + upper) / 2
+	     mid_name = entries[mid].name
+
+	     #compare searched name to name of middle index
+			 #if name is equal to mid_name, found name, so return entry at index mid
+	     if name == mid_name
+	       return entries[mid]
+			 #if name is alphabetically before mid_name, set upper to mid-1
+			 #b/c name must be in lower half of array
+	     elsif name < mid_name
+	       upper = mid - 1
+			 #if name is alphabetically after mid_name, set lower to mid + 1
+			 #b/c name must be in upper half of array
+	     elsif name > mid_name
+	       lower = mid + 1
+	     end
+	   end
+
+	   #if we divide and conquer above with no match, return nil
+	   return nil
+	 end
 end
