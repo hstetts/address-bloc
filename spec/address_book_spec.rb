@@ -68,6 +68,16 @@ let(:book) { AddressBook.new }
      end
    end
 
+   describe "#detonate_all" do
+     it "deletes all entries in address book" do
+       book.add_entry('Sally Smith', '010.032.5281', 'sally.smith@smith.com')
+       book.add_entry('Beatrice Pepp', '033.333.4441', 'beatrice.pepp@pepp.com')
+
+       book.detonate_all
+       expect(book.entries.size).to eq(0)
+     end
+   end
+
 # Test that AddressBook's .import_from_csv() method is working as expected
    describe "#import_from_csv" do
      it "imports the correct number of entries" do

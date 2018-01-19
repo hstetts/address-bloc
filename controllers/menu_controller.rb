@@ -14,7 +14,8 @@ class MenuController
 		puts "2 - Create an entry"
 		puts "3 - Search for an entry"
 		puts "4 - Import entries from a CSV"
-		puts "5 - Exit"
+		puts "5 - Delete All Entries"
+		puts "6 - Exit"
 		print "Enter your selection: "
 
 		#retrieve user input from the command line using gets
@@ -39,6 +40,10 @@ class MenuController
 			read_csv
 			main_menu
 		when 5
+			system "clear"
+			detonate_all
+			main_menu
+		when 6
 			puts "Good-bye!"
 			#terminate program; 0 signals exit w/o error
 			exit(0)
@@ -53,7 +58,7 @@ class MenuController
 
 	def view_all_entries
 		#iterate through all entries in AddressBook
-		@address_book.entries do |entry|
+		@address_book.entries.each do |entry|
 			system "clear"
 			puts entry.to_s
 			#call entry_submenu to display a submenu for each entry
@@ -163,6 +168,22 @@ class MenuController
 			read_csv
 		end
 	end
+
+	def detonate_all
+		puts "Are you sure you want to delete all entries?"
+		puts "Enter: \"y\" for Yes and \"n\" for No"
+		selection = gets.chomp
+
+			if selection == "y"
+				#remove all entries from address_book
+		    @address_book.detonate_all
+		    puts "All entries have been deleted."
+			else
+				if selection == "n"
+				main_menu
+			end
+		end
+  end
 
 	def entry_submenu(entry)
 		#displays submenu options

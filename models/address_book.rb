@@ -45,6 +45,10 @@ class AddressBook
 		@entries.delete(delete_entry)
 	end
 
+	def detonate_all
+		@entries.clear
+	end
+
   #define import_from_csv
   #method starts by reading file.read in csv format
   def import_from_csv(file_name)
