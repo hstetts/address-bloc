@@ -61,6 +61,17 @@ class AddressBook
      end
   end
 
+	def iterative_search(name)
+
+		@entries.each do |entry|
+			if name == entry.name
+				return entry
+			end
+		end
+
+		return nil
+	end
+
 	def binary_search(name)
 		 #save the index of the leftmost item in the array in lower
 		 #save rightmost item in array in upper
