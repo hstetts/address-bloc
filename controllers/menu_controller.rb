@@ -53,7 +53,7 @@ class MenuController
 
 	def view_all_entries
 		#iterate through all entries in AddressBook
-		@address_book.entries do |entry|
+		@address_book.entries.each do |entry|
 			system "clear"
 			puts entry.to_s
 			#call entry_submenu to display a submenu for each entry
